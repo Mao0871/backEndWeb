@@ -62,7 +62,14 @@
 }
 .navbar-custom {
     border-bottom: 1px solid #ccc; /* 定制化的分隔线颜色和样式 */
+    font-family: 'Roboto', sans-serif;
 }
+.nav-link.nav-link-bold {
+    font-weight: bold !important;
+}
+
+
+
 
 /* 媒体查询：在小屏幕上调整样式 */
 @media (max-width: 768px) {
