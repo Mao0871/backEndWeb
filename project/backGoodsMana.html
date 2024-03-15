@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bcak Goods management system</title>
+    <link rel="stylesheet" href="./css/styleBackLogin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="logo-wrapper">
+                <img class="logo" src="./image/Logo.png" alt="Logo">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active text-dark" aria-current="page" href="#">Goods</a>
+                    <a class="nav-link text-dark" href="BackOrderALL.html">Order</a>
+                    <a class="nav-link text-dark" href="BackBestSeller.html">BestSeller</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div style="border-top: 1px solid grey; padding-top: 10px;">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <h5>Goods Management</h5>
+                <a href="backCategoryMana.html" class="text-decoration-none">Category edit</a>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-3">
+            <table class="table" id="goodsTable" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>     </th>
+                        <th>Name & ID</th>
+                        <th>Price</th>
+                        <th>Sales</th>
+                        <th>All Inventory</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Existing rows -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <button id="add-category-btn" onclick="addGoodsRow()" style="position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; border: none; background-color: transparent; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+            <path d="M27.5002 50.4167C40.1567 50.4167 50.4168 40.1566 50.4168 27.5C50.4168 14.8435 40.1567 4.58337 27.5002 4.58337C14.8436 4.58337 4.5835 14.8435 4.5835 27.5C4.5835 40.1566 14.8436 50.4167 27.5002 50.4167Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M27.5 18.3334V36.6667" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.3335 27.5H36.6668" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    
+    <script>
+        function addGoodsRow() {
+            const table = document.getElementById('goodsTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow(-1); // Ensure the new row is added at the end of the table body
+            const imgCell = newRow.insertCell(0);
+            const nameIdCell = newRow.insertCell(1);
+            const priceCell = newRow.insertCell(2);
+            const salesCell = newRow.insertCell(3);
+            const inventoryCell = newRow.insertCell(4);
+            const actionCell = newRow.insertCell(5);
+
+            let highestId = 0;
+            for (let i = 0; i < table.rows.length; i++) {
+                const idText = table.rows[i].cells[1].innerText;
+                const idMatch = idText.match(/ID: (\d+)/);
+                if (idMatch) {
+                    const id = parseInt(idMatch[1], 10);
+                    if (id > highestId) {
+                        highestId = id;
+                    }
+                }
+            }
+            const newId = highestId + 1;
+
+            imgCell.innerHTML = '<img src="image/AJ1.jpg" alt="Thumbnail" style="width: 100px; height: auto;">';
+            nameIdCell.innerHTML = `<div>Name: N/A</div><div>ID: ${newId.toString().padStart(3, '0')}</div>`;
+            priceCell.innerText = 'N/A';
+            salesCell.innerText = 'N/A';
+            inventoryCell.innerText = 'N/A';
+            actionCell.innerHTML = '<button class="btn btn-primary" onclick="window.location.href = \'BackGoodsDetail.html\';">Detail</button> <button class="btn btn-danger">Delete</button>';
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

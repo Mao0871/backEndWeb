@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Goods Management System</title>
+    <link rel="stylesheet" href="./css/styleBackLogin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .fixed-bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+    
+        .add-icon, .delete-icon {
+            cursor: pointer;
+        }
+    
+        .goods-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    
+        .goods-image {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+        }
+    
+        .goods-image img {
+            width: 100%;
+            height: 100%;
+        }
+    
+        .delete-icon {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 11px;
+            height: 11px;
+        }
+    
+        .add-goods-image {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #21272A;
+            border-radius: 50%;
+        }
+    
+        .main-content {
+            padding-top: 60px; /* 增加的样式 */
+        }
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="logo-wrapper">
+                <img class="logo" src="./image/Logo.png" alt="Logo">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link text-dark" href="backGoodsMana.html">Goods</a>
+                    <a class="nav-link text-dark" href="BackOrderALL.html">Order</a>
+                    <a class="nav-link text-dark" href="BackBestSeller.html">BestSeller</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content container mt-5">
+        <h5>Goods Management</h5>
+        <div class="goods-images">
+            <!-- Example of goods image -->
+            <div class="goods-image">
+                <img src="./image/AJ1.jpg" alt="Product Image">
+                <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 9L9 15" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 9L15 15" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <!-- Add button -->
+            <div class="add-goods-image add-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+                    <path d="M27.4997 50.4167C40.1562 50.4167 50.4163 40.1566 50.4163 27.5C50.4163 14.8435 40.1562 4.58337 27.4997 4.58337C14.8431 4.58337 4.58301 14.8435 4.58301 27.5C4.58301 40.1566 14.8431 50.4167 27.4997 50.4167Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M27.5 18.3334V36.6667" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.333 27.5H36.6663" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <div>Name: <input type="text" value="AJ1"></div>
+                <div>ID: <span>123</span></div>
+                <div>Category_id: <input type="text" value="001"></div>
+                <div>Sub_Category_id: <input type="text" value="001001"></div>
+                <div>Description: <textarea rows="3">Product Description Here</textarea></div>
+            </div>
+            <div class="col">
+                <div>Price: <input type="text" value="699"></div>
+                <div>Promotion: <input type="text" value="0"></div>
+            </div>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Size</th>
+                            <th scope="col">Inventory</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>41</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                            <td>5</td>
+                        </tr>
+                        <!-- Add more sizes as needed -->
+                    </tbody>
+                </table>
+                <div class="add-icon" style="width: 11px; height: 11px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+                        <path d="M27.4997 50.4167C40.1562 50.4167 50.4163 40.1566 50.4163 27.5C50.4163 14.8435 40.1562 4.58337 27.4997 4.58337C14.8431 4.58337 4.58301 14.8435 4.58301 27.5C4.58301 40.1566 14.8431 50.4167 27.4997 50.4167Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M27.5 18.3334V36.6667" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.333 27.5H36.6663" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed-bottom-bar">
+            <div>Product_sale_count: 10</div>
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

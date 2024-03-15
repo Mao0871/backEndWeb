@@ -1,0 +1,116 @@
+.box .content .login-wrapper h1 {
+    text-align: center;
+}
+.logo-topic-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.content {
+    display: flex;
+    justify-content: flex-start; /* 电脑端内容靠左对齐 */
+    align-items: flex-start; /* 更新：内容在视口中靠顶部对齐 */
+    padding-top: 120px; /* 确保内容不被导航栏遮挡 */
+    flex-direction: column;
+    gap: 16px;
+    flex-shrink: 0;
+    margin-left: 10%; /* 电脑端内容与页面左边有一定间隔，但对齐顶部 */
+    width: auto; /* 自动宽度 */
+}
+
+.login-wrapper h1 {
+    margin-bottom: 24px;
+}
+
+.username,
+.password {
+    margin-bottom: 32px;
+}
+
+.login-btn {
+    background-color: #5198F2;
+    margin-top: 32px;
+    width: 100%;
+}
+.username,
+.password {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/*导航栏*/
+.custom-brand {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main-content {
+    margin-top: 100px;
+}
+
+#add-category-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.navbar-custom {
+    border-bottom: 1px solid #ccc; /* 定制化的分隔线颜色和样式 */
+}
+
+/* 媒体查询：在小屏幕上调整样式 */
+@media (max-width: 768px) {
+    .content {
+        margin: 0 auto; /* 移动端内容居中显示 */
+        padding-top: 150px; /* 为移动端调整顶部空间 */
+        justify-content: center; /* 移动端内容水平居中 */
+        align-items: center; /* 移动端内容垂直居中 */
+    }
+
+    .login-wrapper {
+        align-items: center; /* 保证登录框在移动端也垂直居中 */
+    }
+
+    /* 以下是移动端样式调整 */
+    .login-wrapper h1,
+    .username,
+    .password,
+    .login-btn {
+        width: auto; /* 移动端宽度自适应 */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* 直接设置navbar-toggler的颜色 */
+    .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.1); /* Optional: 设置边框颜色以提高可见性 */
+    }
+
+    /* 使用伪元素改变折叠按钮的颜色 */
+    .navbar-toggler-icon::before {
+        content: "\2630"; /* 这是一个汉堡菜单图标的Unicode字符 */
+        font-size: 20px; /* 调整图标大小 */
+        color: black; /* 将颜色设置为黑色以确保在白色背景上可见 */
+        line-height: 0.6; /* 调整行高以垂直居中显示 */
+    }
+
+    /* 调整伪元素位置以与Bootstrap原生图标对齐 */
+    .navbar-toggler {
+        position: relative;
+    }
+
+    .navbar-toggler-icon {
+        background-image: none !important; /* 移除Bootstrap默认的背景图标 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+/* 保持其他样式不变 */
+
+}
