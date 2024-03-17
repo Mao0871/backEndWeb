@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Goods Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styleBackLogin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-custom" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="logo-wrapper">
+                <img class="logo" src="./image/Logo.png" alt="Logo">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active text-dark nav-link-bold" href="/backGoodsManaMan.html">Product</a>
+                    <a class="nav-link text-dark" href="/BackOrderALL.html">Sell History</a>
+                    <a class="nav-link text-dark" href="/BackBestSeller.html">BestSeller</a>
+                    <a class="nav-link text-dark" href="/backCategoryMana.html">Category</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="main-content">
+            <div style="padding-top: 10px; background-color: rgb(31, 31, 31);">    
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 style="color: white">Goods Management</h5>
+                        <a href="BackBillsummary.html" class="text-decoration-none" style="color: rgb(146, 146, 252);">Bill summary</a>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 1px; background-color: rgb(87, 87, 87);">    
+                <div class="container-fluid">
+                    <div class="mt-2" style="padding-top: 2px;">
+                        <a href="/backGoodsManaMAN.html" class="text-decoration-none font-weight-bold" style="color: rgb(146, 146, 252); margin-right: 20px;">Man</a>
+                        <a href="/backGoodsManaWoman.html" class="text-decoration-none font-weight-bold" style="color: white; margin-right: 20px;">Woman</a>
+                        <a href="/backGoodsManakids.html" class="text-decoration-none font-weight-bold" style="color: white; margin-right: 20px;">Kids</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-3">
+            <table class="table" id="goodsTable" style="width: 100%;">
+                <thead>
+                    <tr>    
+                        <th></th>
+                        <th>Name & ID</th>
+                        <th>Price</th>
+                        <th>All Inventory</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(function(product) { %>
+                        <tr>
+                            <td></td>
+                            <td><%= product.name %> & <%= product.id %></td>
+                            <td><%= product.price %></td>
+                            <td><%= product.inventory %></td>
+                            <td>Actions</td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <button id="add-category-btn" style="position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; border: none; background-color: transparent; cursor: pointer;" onclick="window.location.href='BackGoodsDetail.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+            <path d="M27.5002 50.4167C40.1567 50.4167 50.4168 40.1566 50.4168 27.5C50.4168 14.8435 40.1567 4.58337 27.5002 4.58337C14.8436 4.58337 4.5835 14.8435 4.5835 27.5C4.5835 40.1566 14.8436 50.4167 27.5002 50.4167Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M27.5 18.3334V36.6667" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.3335 27.5H36.6668" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
