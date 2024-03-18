@@ -26,6 +26,7 @@ connection.connect(err => {
     console.log(`Connected to MySQL as id ${connection.threadId}`);
 });
 
+
 // 修正的根路由，用于渲染登录页面
 app.get('/', (req, res) => {
     res.render('backendLogin'); // 直接渲染 login.ejs 页面
