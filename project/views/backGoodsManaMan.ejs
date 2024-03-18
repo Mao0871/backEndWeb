@@ -34,7 +34,7 @@
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 style="color: white">Goods Management</h5>
-                        <a href="./BackBillsummary.html" class="text-decoration-none" style="color: rgb(146, 146, 252);">Bill summary</a>
+                        <a href="/bill-summary" class="text-decoration-none" style="color: rgb(146, 146, 252);">Bill summary</a>
                     </div>
                 </div>
             </div>
@@ -55,6 +55,7 @@
                     <tr>    
                         <th></th>
                         <th>Name</th>
+                        <th>ID</th>
                         <th>Price</th>
                         <th>All Inventory</th>
                         <th>Actions</th>
@@ -65,10 +66,11 @@
                         <tr>
                             <td></td>
                             <td><%= product.name %></td>
+                            <td><%= product.id %></td>
                             <td><%= product.price %></td>
                             <td><%= product.inventory %></td>
                             <td>
-                                <a href="/product-detail/<%= product.id %>" class="btn btn-primary">Detail</a>
+                                <a href="/Detail" class="btn btn-primary">Detail</a>
                                 <button class="btn btn-danger" onclick="deleteProduct('<%= product.id %>')">Delete</button>
                             </td>
                             
@@ -79,7 +81,7 @@
         </div>
     </div>
 
-    <button id="add-category-btn" style="position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; border: none; background-color: transparent; cursor: pointer;" onclick="window.location.href='BackGoodsDetail.html'">
+    <button id="add-category-btn" style="position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; border: none; background-color: transparent; cursor: pointer;" onclick="window.location.href='/Detail'">
         <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
             <path d="M27.5002 50.4167C40.1567 50.4167 50.4168 40.1566 50.4168 27.5C50.4168 14.8435 40.1567 4.58337 27.5002 4.58337C14.8436 4.58337 4.5835 14.8435 4.5835 27.5C4.5835 40.1566 14.8436 50.4167 27.5002 50.4167Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M27.5 18.3334V36.6667" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

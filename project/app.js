@@ -17,6 +17,7 @@ const connection = mysql.createConnection({
     database: 'flywingsbackend'
 });
 
+
 connection.connect(err => {
     if (err) {
         console.error('Error connecting to MySQL: ' + err.stack);
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
 
 // 商品管理页面路由
 app.get('/goods-management', (req, res) => {
-    connection.query('SELECT name, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product', (err, results) => {
+    connection.query('SELECT name, id, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product', (err, results) => {
         if (err) {
             console.error('Error fetching products: ' + err);
             return res.status(500).send('Error fetching products');
@@ -41,6 +42,7 @@ app.get('/goods-management', (req, res) => {
         res.render('backGoodsManaMan', { products: results });
     });
 });
+
 
 // 其他页面的路由
 app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
@@ -51,6 +53,7 @@ app.get('/goods-kids', (req, res) => res.render('backGoodsManakids'));
 app.get('/bill-summary', (req, res) => res.render('BackBillsummary'));
 app.get('/Detail', (req, res) => res.render('BackGoodsDetail'));
 app.get('/sub-category', (req, res) => res.render('BackSub_CategoryMana'));
+
 
 const port = 3000;
 app.listen(port, () => {
