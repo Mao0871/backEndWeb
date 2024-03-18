@@ -17,7 +17,6 @@ const connection = mysql.createConnection({
     database: 'flywingsbackend'
 });
 
-
 connection.connect(err => {
     if (err) {
         console.error('Error connecting to MySQL: ' + err.stack);
