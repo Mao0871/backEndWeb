@@ -43,6 +43,19 @@ app.get('/goods-management', (req, res) => {
     });
 });
 
+app.delete('/delete-product/:id', (req, res) => {
+    const productId = req.params.id;
+    const deleteQuery = 'DELETE FROM product WHERE id = ?';
+
+    connection.query(deleteQuery, [productId], (err, results) => {
+        if(err) {
+            console.error('Error deleting product: ' + err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
 
 // 其他页面的路由
 app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
