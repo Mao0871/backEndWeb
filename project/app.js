@@ -58,7 +58,7 @@ app.delete('/delete-product/:id', (req, res) => {
         res.json({ success: true });
     });
 });
-
+//按下detail按钮可以转到对应商品的detail页面
 app.get('/product-detail/:id', (req, res) => {
     const productId = req.params.id;
     const query = `SELECT p.name, p.id, p.category_id, p.sub_category_id, p.description, p.price, p.discount, p.41, p.42, p.43, p.44, p.45, p.46
@@ -77,7 +77,7 @@ app.get('/product-detail/:id', (req, res) => {
         }
     });
 });
-
+//detail页面修改后回传到sql
 app.post('/update-product', (req, res) => {
     // Destructure the request body to extract all fields, including sizes
     const { id, name, category_id, sub_category_id, description, price, discount, size_41, size_42, size_43, size_44, size_45, size_46 } = req.body;
@@ -102,8 +102,17 @@ app.post('/update-product', (req, res) => {
     );
 });
 
+app.post('/add-product', (req, res) => {
+    const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
 
-
+    connection.query(insertQuery, (err, results) => {
+        if (err) {
+            console.error('Error adding new product: ' + err);
+            return res.status(500).send('Error adding new product');
+        }
+        res.redirect('/goods-management');
+    });
+});
 
 // 其他页面的路由
 app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
