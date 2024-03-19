@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 // 商品管理页面路由
 app.get('/goods-management', (req, res) => {
-    connection.query('SELECT name, id, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product', (err, results) => {
+    connection.query('SELECT name, id, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product WHERE category_id = "001"', (err, results) => {
         if (err) {
             console.error('Error fetching products: ' + err);
             return res.status(500).send('Error fetching products');
@@ -45,6 +45,7 @@ app.get('/goods-management', (req, res) => {
         res.render('backGoodsManaMan', { products: results });
     });
 });
+
 
 app.delete('/delete-product/:id', (req, res) => {
     const productId = req.params.id;
@@ -102,6 +103,7 @@ app.post('/update-product', (req, res) => {
     );
 });
 
+//添加货物按钮
 app.post('/add-product', (req, res) => {
     const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
 
@@ -113,6 +115,7 @@ app.post('/add-product', (req, res) => {
         res.redirect('/goods-management');
     });
 });
+
 
 // 其他页面的路由
 app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
