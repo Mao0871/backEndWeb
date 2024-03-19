@@ -70,7 +70,7 @@
                             <td><%= product.price %></td>
                             <td><%= product.inventory %></td>
                             <td>
-                                <a href="/Detail" class="btn btn-primary">Detail</a>
+                                <a href="/product-detail/<%= product.id %>" class="btn btn-primary">Detail</a>
                                 <button class="btn btn-danger" onclick="deleteProduct('<%= product.id %>')">Delete</button>
                             </td>
                             

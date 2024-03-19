@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back Goods Management System</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/styleBackLogin.css">
+    <link rel="stylesheet" href="../css/styleBackLogin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         .fixed-bottom-bar {
             position: fixed;
@@ -70,7 +71,7 @@
     <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-custom" data-bs-theme="dark">
         <div class="container-fluid">
             <div class="logo-wrapper">
-                <img class="logo" src="./image/Logo.png" alt="Logo">
+                <img class="logo" src="../image/Logo.png" alt="Logo">
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -91,7 +92,7 @@
         <div class="goods-images">
             <!-- Example of goods image -->
             <div class="goods-image">
-                <img src="./image/AJ1.jpg" alt="Product Image">
+                <img src="../image/AJ1.jpg" alt="Product Image">
                 <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M15 9L9 15" stroke="#21272A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -102,15 +103,15 @@
 
         <div class="row mt-4">
             <div class="col">
-                <div>Name: <input type="text" value="AJ1"></div>
-                <div>ID: <span>123</span></div>
-                <div>Category_id: <input type="text" value="001"></div>
-                <div>Sub_Category_id: <input type="text" value="001001"></div>
-                <div>Description: <textarea rows="3">Product Description Here</textarea></div>
+                <div>Name: <input type="text" name="name" value="<%= product.name %>"></div>
+                <div>ID: <span id="productId"><%= product.id %></span></div>
+                <div>Category_id: <input type="text" name="category_id" value="<%= product.category_id %>"></div>
+                <div>Sub_Category_id: <input type="text" name="sub_category_id" value="<%= product.sub_category_id %>"></div>
+                <div>Description: <textarea name="description" rows="3"><%= product.description %></textarea></div>
             </div>
             <div class="col">
-                <div>Price: <input type="text" value="699"></div>
-                <div>Promotion: <input type="text" value="0"></div>
+                <div>Price: <input type="text" name="price" value="<%= product.price %>"></div>
+                <div>Promotion: <input type="text" name="promotion" value="<%= product.promotion %>"></div>
             </div>
             <div class="col">
                 <table class="table">
@@ -121,33 +122,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>41</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
-                        <tr>
-                            <td>42</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
-                        <tr>
-                            <td>43</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
-                        <tr>
-                            <td>44</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
-                        <tr>
-                            <td>45</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
-                        <tr>
-                            <td>46</td>
-                            <td><input type="number" value="5" min="0"></td>
-                        </tr>
+                        <% [41, 42, 43, 44, 45, 46].forEach(function(size) { %>
+                            <tr>
+                                <td><%= size %></td>
+                                <td><input type="number" name="size_<%= size %>" value="<%= product[size] %>" min="0"></td>
+                            </tr>
+                        <% }); %>
                     </tbody>
+                    
                 </table>
-            </div>
+            </div>            
         </div>
         
 
@@ -158,11 +142,37 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script>
-        document.getElementById('saveButton').addEventListener('click', function() {
-            // 传输数据代码块
+      document.getElementById('saveButton').addEventListener('click', function() {
+    const productData = {
+        name: document.querySelector('input[name="name"]').value,
+        id: document.getElementById('productId').innerText,
+        category_id: document.querySelector('input[name="category_id"]').value,
+        sub_category_id: document.querySelector('input[name="sub_category_id"]').value,
+        description: document.querySelector('textarea[name="description"]').value,
+        price: document.querySelector('input[name="price"]').value,
+        promotion: document.querySelector('input[name="promotion"]').value,
+        // Use the new `name` attributes to correctly target each input
+        size_41: document.querySelector('input[name="size_41"]').value,
+        size_42: document.querySelector('input[name="size_42"]').value,
+        size_43: document.querySelector('input[name="size_43"]').value,
+        size_44: document.querySelector('input[name="size_44"]').value,
+        size_45: document.querySelector('input[name="size_45"]').value,
+        size_46: document.querySelector('input[name="size_46"]').value,
+    };
 
-            window.location.href = 'backGoodsManaMan.html';
+    axios.post('/update-product', productData,{
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(function(response) {
+            window.location.href = '/goods-management';
+        })
+        .catch(function(error) {
+            console.log(error);
         });
+});
+
     </script>
 </body>
 </html>

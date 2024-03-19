@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+
 const ejs = require('ejs');
 const mysql = require('mysql2');
 const path = require('path');
 const app = express();
+app.use(express.json());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +27,7 @@ connection.connect(err => {
     }
     console.log(`Connected to MySQL as id ${connection.threadId}`);
 });
+
 
 
 // 修正的根路由，用于渲染登录页面
@@ -55,6 +58,51 @@ app.delete('/delete-product/:id', (req, res) => {
         res.json({ success: true });
     });
 });
+
+app.get('/product-detail/:id', (req, res) => {
+    const productId = req.params.id;
+    const query = `SELECT p.name, p.id, p.category_id, p.sub_category_id, p.description, p.price, p.discount, p.41, p.42, p.43, p.44, p.45, p.46
+                   FROM product p WHERE p.id = ?`;
+
+    connection.query(query, [productId], (err, results) => {
+        if (err) {
+            console.error('Error fetching product details: ' + err);
+            return res.status(500).send('Error fetching product details');
+        }
+        if (results.length > 0) {
+            const product = results[0];
+            res.render('BackGoodsDetail', { product });
+        } else {
+            res.status(404).send('Product not found');
+        }
+    });
+});
+
+app.post('/update-product', (req, res) => {
+    // Destructure the request body to extract all fields, including sizes
+    const { id, name, category_id, sub_category_id, description, price, discount, size_41, size_42, size_43, size_44, size_45, size_46 } = req.body;
+
+    // Construct an SQL query that updates product details and sizes
+    const updateProductQuery = `
+        UPDATE product 
+        SET name = ?, category_id = ?, sub_category_id = ?, description = ?, price = ?, discount = ?, 
+        \`41\` = ?, \`42\` = ?, \`43\` = ?, \`44\` = ?, \`45\` = ?, \`46\` = ? 
+        WHERE id = ?`;
+
+    // Execute the query with parameters from the request body
+    connection.query(updateProductQuery, 
+        [name, category_id, sub_category_id, description, price, discount, size_41, size_42, size_43, size_44, size_45, size_46, id], 
+        (err, results) => {
+            if (err) {
+                console.error('Error updating product: ' + err);
+                return res.status(500).send('Error updating product');
+            }
+            res.send({ success: true });
+        }
+    );
+});
+
+
 
 
 // 其他页面的路由
