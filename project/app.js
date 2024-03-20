@@ -45,6 +45,25 @@ app.get('/goods-management', (req, res) => {
         res.render('backGoodsManaMan', { products: results });
     });
 });
+// Route for displaying women's products
+app.get('/goods-woman', (req, res) => {
+    connection.query('SELECT name, id, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product WHERE category_id = "002"', (err, results) => {
+        if (err) {
+            console.error('Error fetching women\'s products: ' + err);
+            return res.status(500).send('Error fetching women\'s products');
+        }
+        res.render('backGoodsManaWoman', { products: results });
+    });
+});
+app.get('/goods-kids', (req, res) => {
+    connection.query('SELECT name, id, price, (`41` + `42` + `43` + `44` + `45` + `46`) AS inventory FROM product WHERE category_id = "003"', (err, results) => {
+        if (err) {
+            console.error('Error fetching women\'s products: ' + err);
+            return res.status(500).send('Error fetching women\'s products');
+        }
+        res.render('backGoodsManaWoman', { products: results });
+    });
+});
 
 
 app.delete('/delete-product/:id', (req, res) => {
@@ -103,18 +122,49 @@ app.post('/update-product', (req, res) => {
     );
 });
 
-//添加货物按钮
-app.post('/add-product', (req, res) => {
-    const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
+
+// 添加货物按钮
+app.post('/add-product1', (req, res) => {
+    // 将category_id设置为1
+    const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
 
     connection.query(insertQuery, (err, results) => {
         if (err) {
             console.error('Error adding new product: ' + err);
             return res.status(500).send('Error adding new product');
         }
+        // 成功添加商品后重定向回商品管理页面
+        res.redirect('/goods-management');
+    });
+
+});
+app.post('/add-product2', (req, res) => {
+    // 将category_id设置为2
+    const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
+
+    connection.query(insertQuery, (err, results) => {
+        if (err) {
+            console.error('Error adding new product: ' + err);
+            return res.status(500).send('Error adding new product');
+        }
+        // 成功添加商品后重定向回商品管理页面
         res.redirect('/goods-management');
     });
 });
+app.post('/add-product3', (req, res) => {
+    // 将category_id设置为3
+    const insertQuery = `INSERT INTO product (name, category_id, sub_category_id, description, price, discount, \`41\`, \`42\`, \`43\`, \`44\`, \`45\`, \`46\`) VALUES (NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)`;
+
+    connection.query(insertQuery, (err, results) => {
+        if (err) {
+            console.error('Error adding new product: ' + err);
+            return res.status(500).send('Error adding new product');
+        }
+        // 成功添加商品后重定向回商品管理页面
+        res.redirect('/goods-management');
+    });
+});
+
 
 
 // 其他页面的路由
@@ -122,7 +172,7 @@ app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
 app.get('/best-seller', (req, res) => res.render('BackBestSeller'));
 app.get('/category-management', (req, res) => res.render('backCategoryMana'));
 app.get('/goods-woman', (req, res) => res.render('backGoodsManaWoman'));
-app.get('/goods-kids', (req, res) => res.render('backGoodsManakids'));
+
 app.get('/bill-summary', (req, res) => res.render('BackBillsummary'));
 app.get('/Detail', (req, res) => res.render('BackGoodsDetail'));
 app.get('/sub-category', (req, res) => res.render('BackSub_CategoryMana'));
