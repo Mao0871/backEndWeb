@@ -174,7 +174,6 @@ app.get('/sell-history', (req, res) => res.render('BackOrderALL'));
 app.get('/best-seller', (req, res) => res.render('BackBestSeller'));
 app.get('/category-management', (req, res) => res.render('backCategoryMana'));
 app.get('/goods-woman', (req, res) => res.render('backGoodsManaWoman'));
-
 app.get('/bill-summary', (req, res) => res.render('BackBillsummary'));
 app.get('/Detail', (req, res) => res.render('BackGoodsDetail'));
 app.get('/sub-category', (req, res) => res.render('BackSub_CategoryMana'));
